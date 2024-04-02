@@ -86,6 +86,16 @@
             font-size: 1.2em;
             margin-bottom: 5px;
         }
+
+        /* Estilos para el mensaje de confirmación */
+        #confirmation_message {
+            display: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -120,6 +130,9 @@
 
             <input type="submit" value="Enviar">
         </form>
+
+        <!-- Mensaje de confirmación -->
+        <div id="confirmation_message">Formulario enviado correctamente, te contactaremos a la brevedad ¡Gracias por participar del programa Carretes Verdes!</div>
     </div>
 
     <div class="contact-info">
@@ -142,9 +155,12 @@
                 alert('Debes aceptar los términos y condiciones.');
                 return false;
             }
-            // Enviar datos del formulario por correo electrónico
-            sendEmail();
-            return true;
+            // Mostrar el mensaje de confirmación
+            document.getElementById('confirmation_message').style.display = 'block';
+            // Limpiar el formulario
+            clearForm();
+            // Evitar que el formulario se envíe automáticamente
+            return false;
         }
 
         // Función para enviar los datos del formulario por correo electrónico
@@ -172,6 +188,11 @@
             xhr.open("POST", url, true);
             xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhr.send(params);
+        }
+
+        // Función para limpiar el formulario después de enviarlo
+        function clearForm() {
+            document.getElementById('carretes_form').reset();
         }
     </script>
 </body>
