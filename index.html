@@ -94,12 +94,12 @@
         <h3>Furukawa Electric LatAM</h3>
 
         <!-- Incrustar el archivo PowerPoint utilizando un iframe -->
-        <iframe src="https://onedrive.live.com/embed?resid=26254131704B9FD5%211232&amp;authkey=%21AOzZkN1RVMZx_0w&amp;em=2&amp;wdAr=1.7770833333333333" width="800px" height="420px" frameborder="0">Esto es un documento de <a target="_blank" href="https://office.com">Microsoft Office</a> incrustado con tecnología de <a target="_blank" href="https://office.com/webapps">Office</a>.</iframe><br>
+        <iframe id="pptFrame" src="https://onedrive.live.com/embed?resid=26254131704B9FD5%211232&amp;authkey=%21AOzZkN1RVMZx_0w&amp;em=2&amp;wdAr=1.7770833333333333" width="800px" height="420px" frameborder="0">Esto es un documento de <a target="_blank" href="https://office.com">Microsoft Office</a> incrustado con tecnología de <a target="_blank" href="https://office.com/webapps">Office</a>.</iframe><br>
 
-        <a href="terms_conditions.html">Términos y Condiciones</a><br>
+        <a href="#" onclick="openTermsPopup();">Términos y Condiciones</a><br>
         <input type="checkbox" id="accept_terms" required> Acepto los términos y condiciones<br>
 
-        <form action="/submit" method="post">
+        <form id="carretes_form" action="/submit" method="post" onsubmit="return validateForm()">
             <label for="nombre_empresa">Nombre de la empresa:</label><br>
             <input type="text" id="nombre_empresa" name="nombre_empresa" required><br>
 
@@ -122,26 +122,28 @@
         </form>
     </div>
 
+    <div class="contact-info">
+        <center>
+            <h4 style="color: white;">Furukawa Electric LatAm S.A. - Sucursal Argentina</h4>
+            <p style="color: white;">Dirección de planta: Ruta 2 km 37,5 - Berazategui, Buenos Aires CP 1884</p>
+            <p style="color: white;">Contacto: carretesverdes@furukawalatam.com</p>
+        </center>
+    </div>
+
     <script>
-        // Función para ajustar la altura del iframe al tamaño del contenido
-        function ajustarAlturaIframe() {
-            var pptFrame = document.getElementById('pptFrame');
-            var contentHeight = pptFrame.contentWindow.document.body.scrollHeight;
-            pptFrame.style.height = contentHeight + 'px';
+        // Función para abrir una ventana emergente con los términos y condiciones
+        function openTermsPopup() {
+            window.open('terms_conditions.html', 'Términos y Condiciones', 'width=600,height=400');
         }
 
-        // Llamar a la función al cargar la página y cuando cambie el tamaño del iframe
-        window.onload = function() {
-            ajustarAlturaIframe();
-        };
-        document.getElementById('pptFrame').onload = ajustarAlturaIframe;
+        // Función para validar el formulario antes de enviarlo
+        function validateForm() {
+            if (!document.getElementById('accept_terms').checked) {
+                alert('Debes aceptar los términos y condiciones.');
+                return false;
+            }
+            return true;
+        }
     </script>
-
-    <div class="contact-info">
-<center>
-    <h4 style="color: white;">Furukawa Electric LatAm S.A. - Sucursal Argentina</h4>
-    <p style="color: white;">Dirección de planta: Ruta 2 km 37,5 - Berazategui, Buenos Aires CP 1884</p>
-    <p style="color: white;">Contacto: carretesverdes@furukawalatam.com</p>
-</center>
 </body>
 </html>
