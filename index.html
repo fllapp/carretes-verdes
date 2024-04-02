@@ -99,7 +99,7 @@
         <a href="#" onclick="openTermsPopup();">Términos y Condiciones</a><br>
         <input type="checkbox" id="accept_terms" required> Acepto los términos y condiciones<br>
 
-        <form id="carretes_form" action="/submit" method="post" onsubmit="return validateForm()">
+        <form id="carretes_form" onsubmit="return validateForm()">
             <label for="nombre_empresa">Nombre de la empresa:</label><br>
             <input type="text" id="nombre_empresa" name="nombre_empresa" required><br>
 
@@ -142,7 +142,36 @@
                 alert('Debes aceptar los términos y condiciones.');
                 return false;
             }
+            // Enviar datos del formulario por correo electrónico
+            sendEmail();
             return true;
+        }
+
+        // Función para enviar los datos del formulario por correo electrónico
+        function sendEmail() {
+            var nombre_empresa = document.getElementById('nombre_empresa').value;
+            var telefono_contacto = document.getElementById('telefono_contacto').value;
+            var email = document.getElementById('email').value;
+            var direccion_recoleccion = document.getElementById('direccion_recoleccion').value;
+            var Codigo_postal = document.getElementById('Codigo_postal').value;
+            var observaciones = document.getElementById('observaciones').value;
+
+            var message = "Nombre de la empresa: " + nombre_empresa + "\n";
+            message += "Teléfono de contacto: " + telefono_contacto + "\n";
+            message += "Email: " + email + "\n";
+            message += "Dirección de recolección de los carretes: " + direccion_recoleccion + "\n";
+            message += "Código Postal: " + Codigo_postal + "\n";
+            message += "Consultas u observaciones: " + observaciones;
+
+            // Construir objeto XMLHttpRequest
+            var xhr = new XMLHttpRequest();
+            var url = "send_email.php"; // Ruta al archivo PHP que enviará el correo electrónico
+            var params = "message=" + message;
+
+            // Enviar solicitud POST al archivo PHP
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.send(params);
         }
     </script>
 </body>
