@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación de PowerPoint</title>
+    <style>
+        /* Estilos CSS para las imágenes de las diapositivas */
+        .slide {
+            width: 100%; /* Ancho completo */
+            display: block; /* Mostrar como bloque */
+            margin-bottom: 20px; /* Espacio entre las diapositivas */
+        }
+    </style>
+</head>
+<body>
+    <h1>Presentación de PowerPoint</h1>
+    <!-- Iterar sobre la lista de imágenes y mostrarlas en la página -->
+    {% for image in images %}
+        <img src="{{ url_for('static', filename=image) }}" class="slide" alt="Diapositiva">
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa Carretes Verdes</title>
+    <style>
+        /* Estilos generales */
+        body {
+            background-image: url('/static/fondo.JPEG');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+            color: white;
+        }
+
+        /* Estilos para el formulario */
+        form {
+            text-align: left;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+        }
+
+        input[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Estilos para los enlaces */
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilos para los encabezados */
+        h1, h3, h4 {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        h4 {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Carretes Verdes</h1>
+        <h3>Furukawa Electric LatAM</h3>
+
+        <!-- Incrustar el archivo PowerPoint utilizando un iframe -->
+        <iframe src="https://onedrive.live.com/embed?resid=26254131704B9FD5%211232&amp;authkey=%21AOzZkN1RVMZx_0w&amp;em=2&amp;wdAr=1.7770833333333333" width="800px" height="420px" frameborder="0">Esto es un documento de <a target="_blank" href="https://office.com">Microsoft Office</a> incrustado con tecnología de <a target="_blank" href="https://office.com/webapps">Office</a>.</iframe><br>
+
+        <a href="{{ url_for('terms_conditions') }}" target="_blank">Leer Términos y Condiciones</a><br>     
+        <input type="checkbox" id="accept_terms" required> Acepto los términos y condiciones<br>
+
+        <form action="/submit" method="post">
+            <label for="nombre_empresa">Nombre de la empresa:</label><br>
+            <input type="text" id="nombre_empresa" name="nombre_empresa" required><br>
+
+            <label for="telefono_contacto">Teléfono de contacto:</label><br>
+            <input type="text" id="telefono_contacto" name="telefono_contacto" required><br>
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="direccion_recoleccion">Dirección de recolección de los carretes:</label><br>
+            <input type="text" id="direccion_recoleccion" name="direccion_recoleccion" required><br>
+
+            <label for="Codigo_postal">Codigo Postal:</label><br>
+            <input type="text" id="Codigo_postal" name="Codigo_postal" required><br>
+
+            <label for="observaciones">Consultas u observaciones:</label><br>
+            <textarea id="observaciones" name="observaciones"></textarea><br>
+
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+
+    <script>
+        // Función para ajustar la altura del iframe al tamaño del contenido
+        function ajustarAlturaIframe() {
+            var pptFrame = document.getElementById('pptFrame');
+            var contentHeight = pptFrame.contentWindow.document.body.scrollHeight;
+            pptFrame.style.height = contentHeight + 'px';
+        }
+
+        // Llamar a la función al cargar la página y cuando cambie el tamaño del iframe
+        window.onload = function() {
+            ajustarAlturaIframe();
+        };
+        document.getElementById('pptFrame').onload = ajustarAlturaIframe;
+    </script>
+
+    <div class="contact-info">
+<center>
+    <h4 style="color: white;">Furukawa Electric LatAm S.A. - Sucursal Argentina</h4>
+    <p style="color: white;">Dirección de planta: Ruta 2 km 37,5 - Berazategui, Buenos Aires CP 1884</p>
+    <p style="color: white;">Contacto: carretesverdes@furukawalatam.com</p>
+</center>
+</body>
+</html>
